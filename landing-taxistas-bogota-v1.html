@@ -1,0 +1,1361 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Crédito para taxistas en Bogotá | Clave 2000</title>
+<meta name="description" content="Financia tu taxi en Bogotá con Clave 2000. Sin codeudor, hasta 84 meses y respuesta en menos de 72 horas. Más de 23.000 taxis financiados en Colombia." />
+
+<!--
+  CAMBIOS PRINCIPALES vs LANDING ACTUAL:
+  1. Hero rediseñado: copy transaccional, geo-específico Bogotá, sin historial crediticio destacado
+  2. Formulario en hero, simplificado a 4 campos (nombre, celular, correo opcional, actividad)
+  3. WhatsApp y teléfono visibles en hero como canales alternativos
+  4. Diferenciadores fuertes (sin codeudor, 84 meses, 72h) en hero, no enterrados
+  5. Banda de trust con cifras reales (#1, 23.000+ taxis, 30+ años) — pendiente validar #1
+  6. Sección de productos reducida a 2 cards (solo taxistas), copies outcome-focused
+  7. Eliminadas referencias a camiones / vehículos productivos genéricos
+  8. Nueva sección de oficina Bogotá con mapa
+  9. Bugs corregidos: testimonios deduplicados, contador "Más de 0" reemplazado
+  10. CTA principal: "Quiero financiar mi taxi" (outcome) reemplaza "Recibir asesoría" (process)
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   Design tokens — Clave 2000
+   (Equivalente a colors_and_type.css del sistema de diseño)
+   ========================================================= */
+:root{
+  --c-navy:#243C4F;
+  --c-navy-90:rgba(36,60,79,0.9);
+  --c-navy-70:rgba(36,60,79,0.7);
+  --c-navy-60:rgba(36,60,79,0.6);
+  --c-red:#C63025;
+  --c-red-hover:#C52B27;
+  --c-red-dark:#A82119;
+  --c-white:#FFFFFF;
+  --c-bg-soft:#F6F6F6;
+  --c-bg-cool:#F2F4F6;
+  --c-border:#E7E7E7;
+  --c-border-strong:#D1D1D1;
+  --c-text:#1B1B1B;
+  --c-text-muted:#5A6772;
+  --c-text-label:#333333;
+  --c-whatsapp:#00A63E;
+
+  --r-input:8px;
+  --r-button:8px;
+  --r-card:12px;
+  --r-pill:200px;
+
+  --h-input:48px;
+  --h-button:48px;
+  --h-navbar:72px;
+
+  --shadow-card:0 8px 28px rgba(36,60,79,0.12);
+  --shadow-form:0 20px 48px rgba(0,0,0,0.30);
+  --shadow-focus:0 0 0 3px rgba(198,48,37,0.25);
+
+  --font-display:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --font-label:'Roboto','Montserrat',system-ui,sans-serif;
+
+  --container:1200px;
+  --gutter:24px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--font-display);
+  color:var(--c-text);
+  background:var(--c-white);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.4;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 var(--gutter);
+}
+
+/* Reusables ------------------------------------------------ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  height:var(--h-button);
+  padding:0 22px;
+  border-radius:var(--r-button);
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:16px;
+  line-height:1;
+  transition:background .15s ease, transform .15s ease, box-shadow .15s ease;
+  min-height:44px;
+  white-space:nowrap;
+}
+.btn:focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+.btn-primary{background:var(--c-red);color:#fff}
+.btn-primary:hover{background:var(--c-red-hover)}
+.btn-primary:active{background:var(--c-red-dark)}
+.btn-outline{
+  background:#fff;
+  color:var(--c-navy);
+  border:1px solid var(--c-navy);
+}
+.btn-outline:hover{background:var(--c-navy);color:#fff}
+.btn-whatsapp{background:var(--c-whatsapp);color:#fff}
+.btn-whatsapp:hover{filter:brightness(0.95)}
+.btn-block{width:100%}
+
+.material-icons{font-size:20px;line-height:1;vertical-align:middle}
+
+.section{padding:64px 0}
+.section h2{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:30px;
+  color:var(--c-navy);
+  margin:0 0 32px;
+  text-align:center;
+  line-height:1.2;
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  height:var(--h-navbar);
+  background:#fff;
+  border-bottom:1px solid var(--c-border);
+}
+.navbar .container{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.nav-logo img{height:38px;width:auto}
+.nav-links{
+  display:flex;
+  gap:28px;
+  list-style:none;
+  margin:0;
+  padding:0;
+  font-size:14px;
+  font-weight:500;
+  color:var(--c-navy);
+}
+.nav-links a:hover{color:var(--c-red)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-social{display:flex;gap:10px;color:var(--c-navy)}
+.nav-social a{
+  width:34px;height:34px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:50%;
+  border:1px solid var(--c-border);
+  transition:background .15s ease, color .15s ease;
+}
+.nav-social a:hover{background:var(--c-navy);color:#fff;border-color:var(--c-navy)}
+
+.nav-pay{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:0 18px;
+  height:40px;
+  border-radius:var(--r-button);
+  background:var(--c-red);
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+}
+.nav-pay:hover{background:var(--c-red-hover)}
+.nav-wa-mobile{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width:40px;height:40px;
+  background:var(--c-whatsapp);
+  color:#fff;
+  border-radius:50%;
+}
+.nav-burger{
+  display:none;
+  width:40px;height:40px;
+  align-items:center;justify-content:center;
+  border-radius:8px;
+  color:var(--c-navy);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  position:relative;
+  color:#fff;
+  overflow:hidden;
+  /* TODO_CLIENTE: validar que la imagen final muestre taxi amarillo + conductor + Bogotá.
+     Imagen actual: assets/bogota.jpg + overlay navy para garantizar contraste del texto. */
+  background-color:var(--c-navy);
+  background-image:
+    linear-gradient(180deg, rgba(36,60,79,0.55) 0%, rgba(36,60,79,0.78) 100%),
+    url('assets/bogota.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:32px;
+  align-items:center;
+  padding:56px 0 64px;
+  position:relative;
+  z-index:1;
+}
+.hero-visual{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0;
+  background:transparent;
+}
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:#fff;
+  background:rgba(198,48,37,0.95);
+  padding:6px 12px;
+  border-radius:var(--r-pill);
+  align-self:flex-start;
+  margin-bottom:14px;
+}
+.hero h1{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:32px;
+  line-height:1.1;
+  margin:0 0 12px;
+  color:#fff;
+  letter-spacing:-0.01em;
+}
+.hero .sub{
+  font-size:16px;
+  line-height:1.5;
+  color:rgba(255,255,255,0.88);
+  margin:0 0 22px;
+  max-width:560px;
+}
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:18px;
+}
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.22);
+  color:#fff;
+  font-weight:500;
+  font-size:14px;
+  padding:8px 14px;
+  border-radius:var(--r-pill);
+  backdrop-filter:blur(2px);
+}
+.chip .material-icons{color:#fff;background:var(--c-red);border-radius:50%;font-size:16px;padding:2px}
+.trust-line{
+  font-size:13px;
+  color:rgba(255,255,255,0.78);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* Formulario card */
+.form-card{
+  background:#fff;
+  color:var(--c-text);
+  border-radius:var(--r-card);
+  padding:28px;
+  box-shadow:var(--shadow-form);
+}
+.form-card h2{
+  text-align:left;
+  margin:0 0 4px;
+  font-size:22px;
+  color:var(--c-navy);
+  font-weight:700;
+}
+.form-card .muted{
+  color:var(--c-text-muted);
+  font-size:14px;
+  margin:0 0 18px;
+}
+.field{margin-bottom:14px}
+.field label{
+  display:block;
+  font-family:var(--font-label);
+  font-weight:500;
+  font-size:12px;
+  color:var(--c-text-label);
+  margin-bottom:6px;
+  letter-spacing:0.01em;
+}
+.field label .opt{color:var(--c-text-muted);font-weight:400}
+.input-wrap{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+.input-wrap .material-icons{
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--c-navy);
+  font-size:20px;
+  pointer-events:none;
+}
+.field input,
+.field select{
+  width:100%;
+  height:var(--h-input);
+  border:1px solid var(--c-border-strong);
+  border-radius:var(--r-input);
+  background:#fff;
+  padding:0 14px 0 44px;
+  font-family:var(--font-display);
+  font-size:15px;
+  color:var(--c-text);
+  transition:border-color .15s ease, box-shadow .15s ease;
+  appearance:none;
+}
+.field select{
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%23243C4F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 14px center;
+  padding-right:36px;
+}
+.field input:focus,
+.field select:focus{
+  outline:none;
+  border-color:var(--c-red);
+  box-shadow:var(--shadow-focus);
+}
+.field.has-error input,
+.field.has-error select{border-color:var(--c-red)}
+.field .err{
+  display:none;
+  font-size:12px;
+  color:var(--c-red);
+  margin-top:4px;
+}
+.field.has-error .err{display:block}
+
+.check{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:13px;
+  color:var(--c-text-muted);
+  margin:6px 0 16px;
+  line-height:1.45;
+}
+.check input{margin-top:2px;accent-color:var(--c-red);width:16px;height:16px}
+.check a{color:var(--c-navy);text-decoration:underline}
+
+.alt-contact{
+  margin-top:16px;
+  text-align:center;
+}
+.alt-contact .alt-label{
+  font-size:12px;
+  color:var(--c-text-muted);
+  margin-bottom:10px;
+}
+.alt-contact .alt-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.alt-contact .btn{height:42px;font-size:14px;padding:0 12px}
+
+/* Radio cards (Actividad) */
+.radio-group{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.radio-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 6px;
+  border:1.5px solid var(--c-border-strong);
+  border-radius:var(--r-input);
+  background:#fff;
+  cursor:pointer;
+  text-align:center;
+  transition:border-color .15s ease, background .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.radio-card:hover{
+  border-color:var(--c-navy);
+  transform:translateY(-1px);
+}
+.radio-card input{
+  position:absolute;
+  opacity:0;
+  inset:0;
+  width:100%;
+  height:100%;
+  margin:0;
+  cursor:pointer;
+}
+.radio-card .ico{
+  width:32px;height:32px;
+  border-radius:50%;
+  background:var(--c-bg-soft);
+  color:var(--c-navy);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:background .15s ease, color .15s ease;
+}
+.radio-card .ico .material-icons{font-size:20px}
+.radio-card .label{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:14px;
+  color:var(--c-navy);
+  line-height:1.2;
+  text-align:center;
+  display:block;
+  width:100%;
+}
+.radio-card:has(input:checked){
+  border-color:var(--c-red);
+  background:rgba(198,48,37,0.06);
+  box-shadow:0 4px 14px rgba(198,48,37,0.10);
+}
+.radio-card:has(input:checked) .ico{
+  background:var(--c-red);
+  color:#fff;
+}
+.radio-card:has(input:checked) .label{color:var(--c-red)}
+.radio-card:has(input:focus-visible){box-shadow:var(--shadow-focus)}
+.field.has-error .radio-card{border-color:var(--c-red)}
+
+/* Success state */
+.form-success{
+  display:none;
+  text-align:center;
+  padding:24px 8px;
+}
+.form-success .ok-ico{
+  width:64px;height:64px;
+  border-radius:50%;
+  background:rgba(0,166,62,0.12);
+  color:var(--c-whatsapp);
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+}
+.form-success .ok-ico .material-icons{font-size:40px}
+.form-success h3{margin:0 0 8px;color:var(--c-navy);font-weight:700}
+.form-success p{color:var(--c-text-muted);font-size:14px;margin:0 0 18px}
+.form-card.is-sent .form-body{display:none}
+.form-card.is-sent .form-success{display:block}
+
+/* =========================================================
+   TRUST BAND
+   ========================================================= */
+.trust-band{
+  background:var(--c-bg-soft);
+  padding:24px 0;
+  border-top:1px solid var(--c-border);
+  border-bottom:1px solid var(--c-border);
+}
+.trust-band .container{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+  align-items:center;
+  text-align:center;
+}
+.trust-item{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-weight:600;
+  font-size:14px;
+  color:var(--c-navy);
+  font-family:var(--font-display);
+}
+.trust-item .material-icons{color:var(--c-red);font-size:24px}
+
+/* =========================================================
+   PRODUCTOS
+   ========================================================= */
+.productos{background:#fff}
+.cards{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+}
+.product-card{
+  border:1px solid var(--c-border);
+  border-radius:var(--r-card);
+  overflow:hidden;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.product-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-card);
+}
+.product-img{
+  height:200px;
+  background:var(--c-bg-soft);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.product-img img{width:100%;height:100%;object-fit:cover}
+.product-img .placeholder-ico{font-size:96px;color:var(--c-navy-60)}
+.product-body{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1}
+.eyebrow{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:10px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--c-red);
+}
+.product-body h3{
+  margin:0;
+  font-size:20px;
+  font-weight:700;
+  color:var(--c-navy);
+}
+.product-body p{
+  margin:0;
+  font-size:15px;
+  color:var(--c-text-muted);
+  line-height:1.5;
+}
+.benefit-list{
+  list-style:none;
+  padding:0;
+  margin:6px 0 0;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.benefit-list li{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  color:var(--c-text);
+}
+.benefit-list .material-icons{
+  color:var(--c-red);
+  font-size:20px;
+}
+.product-body .btn{margin-top:auto}
+
+/* =========================================================
+   TESTIMONIOS
+   ========================================================= */
+.testimonios{
+  background:var(--c-navy);
+  color:#fff;
+}
+.testimonios h2{color:#fff}
+.testi-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+}
+.testi-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:var(--r-card);
+  padding:24px;
+  position:relative;
+}
+.testi-card .quote-mark{
+  font-family:Georgia,serif;
+  font-size:54px;
+  line-height:1;
+  color:var(--c-red);
+  position:absolute;
+  top:10px;
+  right:18px;
+  opacity:0.9;
+}
+.testi-card .quote{
+  font-size:15px;
+  line-height:1.55;
+  color:rgba(255,255,255,0.92);
+  margin:0 0 18px;
+  min-height:78px;
+}
+.testi-author{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.avatar{
+  width:44px;height:44px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.15) center/cover;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+  color:#fff;
+  font-size:16px;
+}
+.testi-name{font-weight:600;font-size:14px;color:#fff}
+.testi-meta{font-size:12px;color:rgba(255,255,255,0.7)}
+
+/* =========================================================
+   OFICINA BOGOTÁ
+   ========================================================= */
+.oficina{background:#fff}
+.oficina-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:28px;
+  align-items:stretch;
+}
+.map-wrap{
+  border-radius:var(--r-card);
+  overflow:hidden;
+  border:1px solid var(--c-border);
+  min-height:320px;
+}
+.map-wrap iframe{
+  width:100%;
+  height:100%;
+  min-height:320px;
+  border:0;
+  display:block;
+}
+.oficina-info h2{text-align:left;margin-bottom:16px;font-size:28px}
+.info-list{
+  list-style:none;
+  padding:0;
+  margin:0 0 22px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.info-list li{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  font-size:15px;
+  color:var(--c-text);
+}
+.info-list .material-icons{
+  color:var(--c-red);
+  font-size:22px;
+  margin-top:2px;
+  flex-shrink:0;
+}
+.info-list strong{display:block;color:var(--c-navy);font-weight:600;margin-bottom:2px}
+.info-list span{color:var(--c-text-muted);font-size:14px}
+.oficina-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer{
+  background:#1A2C3B;
+  color:rgba(255,255,255,0.85);
+  padding:48px 0 24px;
+  font-size:14px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:32px;
+  margin-bottom:32px;
+}
+.footer h4{
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  margin:0 0 14px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.footer a:hover{color:var(--c-red)}
+.footer-logo img{height:36px;margin-bottom:14px;filter:brightness(0) invert(1)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.12);
+  padding-top:18px;
+  font-size:12px;
+  color:rgba(255,255,255,0.55);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+/* Sticky WhatsApp mobile */
+.fab-wa{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  width:56px;height:56px;
+  border-radius:50%;
+  background:var(--c-whatsapp);
+  color:#fff;
+  display:none;
+  align-items:center;justify-content:center;
+  box-shadow:0 10px 24px rgba(0,166,62,0.35);
+  z-index:60;
+}
+.fab-wa .material-icons{font-size:30px}
+
+/* =========================================================
+   BREAKPOINTS
+   ========================================================= */
+@media (min-width:768px){
+  .hero h1{font-size:42px}
+  .hero .sub{font-size:18px}
+  .trust-band .container{
+    grid-template-columns:1fr 1fr 1fr;
+    gap:24px;
+  }
+  .trust-band .trust-item{justify-content:center;border-left:1px solid var(--c-border);padding-left:24px}
+  .trust-band .trust-item:first-child{border-left:none;padding-left:0}
+  .cards{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .oficina-grid{grid-template-columns:1.05fr 1fr;gap:40px}
+  .alt-contact .alt-row{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr}
+}
+
+@media (min-width:1024px){
+  .hero-inner{
+    grid-template-columns:6fr 4fr;
+    gap:48px;
+    padding:96px 0 104px;
+    min-height:520px;
+  }
+  .hero h1{font-size:48px;max-width:560px}
+  .hero .sub{font-size:18px}
+  .testi-grid{grid-template-columns:repeat(4,1fr)}
+  .section{padding:88px 0}
+}
+
+@media (max-width:767px){
+  .nav-links,.nav-social,.nav-pay{display:none}
+  .nav-burger{display:inline-flex}
+  .nav-wa-mobile{display:inline-flex}
+  .fab-wa{display:inline-flex}
+  .hero-inner{padding:36px 0 40px;min-height:360px}
+  .hero h1{font-size:30px}
+  .form-card{padding:22px;margin:0}
+  .section{padding:48px 0}
+  .section h2{font-size:24px;margin-bottom:24px}
+  .oficina-info h2{font-size:22px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
+<header class="navbar" role="banner">
+  <div class="container">
+    <a class="nav-logo" href="https://www.clave2000.com.co/" aria-label="Ir al inicio de Clave 2000">
+      <img src="https://www.clave2000.com.co/wp-content/uploads/2026/03/LOGO-C2K-02.svg" alt="Clave 2000" />
+    </a>
+
+    <nav aria-label="Menú principal">
+      <ul class="nav-links">
+        <li><a href="https://www.clave2000.com.co/nosotros/">Nosotros</a></li>
+        <li><a href="https://www.clave2000.com.co/creditos/">Créditos</a></li>
+        <li><a href="https://www.clave2000.com.co/blog/">Blog</a></li>
+        <li><a href="https://www.clave2000.com.co/contacto/">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-right">
+      <div class="nav-social" aria-label="Redes sociales">
+        <a href="#" aria-label="Facebook"><span class="material-icons" style="font-size:18px">facebook</span></a>
+        <a href="#" aria-label="Instagram"><span class="material-icons" style="font-size:18px">photo_camera</span></a>
+      </div>
+      <a class="nav-pay" href="https://www.clave2000.com.co/paga-aqui/">
+        <span class="material-icons" style="font-size:18px">payments</span> Paga aquí
+      </a>
+      <!-- TODO_CLIENTE: reemplazar el número placeholder por el número real de WhatsApp Bogotá -->
+      <a class="nav-wa-mobile"
+         href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20información%20sobre%20crédito%20para%20mi%20taxi%20en%20Bogotá"
+         aria-label="WhatsApp Clave 2000">
+        <span class="material-icons" style="font-size:22px">chat</span>
+      </a>
+      <button class="nav-burger" aria-label="Abrir menú" type="button">
+        <span class="material-icons">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<section class="hero" aria-label="Crédito para taxistas en Bogotá">
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Columna izquierda: imagen + copy -->
+      <div class="hero-visual" role="img"
+           aria-label="Taxi amarillo recorriendo Bogotá">
+        <span class="hero-eyebrow">
+          <span class="material-icons" style="font-size:14px">place</span> Bogotá
+        </span>
+
+        <h1>Financia tu taxi en Bogotá</h1>
+        <p class="sub">Aunque no tengas historial crediticio. Valoramos tu experiencia como conductor.</p>
+
+        <div class="chips" role="list">
+          <span class="chip" role="listitem">
+            <span class="material-icons">check</span> Sin codeudor
+          </span>
+          <span class="chip" role="listitem">
+            <span class="material-icons">check</span> Hasta 84 meses
+          </span>
+          <span class="chip" role="listitem">
+            <span class="material-icons">check</span> Respuesta en menos de 72 horas
+          </span>
+        </div>
+
+        <div class="trust-line">
+          <span class="material-icons" style="font-size:16px">verified</span>
+          Más de 23.000 taxis financiados en Colombia
+        </div>
+      </div>
+
+      <!-- Columna derecha: formulario -->
+      <aside class="form-card" id="form-card" aria-label="Formulario de solicitud de crédito">
+
+        <div class="form-body">
+          <h2>Solicita tu crédito ahora</h2>
+          <p class="muted">Te contactamos en menos de 72 horas.</p>
+
+          <!-- GTM: dispatch event 'envio_formulario_hero_bogota' on submit success -->
+          <form id="lead-form" novalidate>
+            <div class="field" data-field="nombre">
+              <label for="nombre">Nombre completo</label>
+              <div class="input-wrap">
+                <span class="material-icons">person</span>
+                <input type="text" id="nombre" name="nombre" autocomplete="name"
+                       required minlength="3" placeholder="Ej. Juan Pérez" />
+              </div>
+              <div class="err">Por favor escribe tu nombre completo.</div>
+            </div>
+
+            <div class="field" data-field="celular">
+              <label for="celular">Celular</label>
+              <div class="input-wrap">
+                <span class="material-icons">phone</span>
+                <input type="tel" id="celular" name="celular" autocomplete="tel-national"
+                       required inputmode="numeric" maxlength="10" placeholder="3001234567" />
+              </div>
+              <div class="err">Ingresa un celular válido de 10 dígitos.</div>
+            </div>
+
+            <div class="field" data-field="correo">
+              <label for="correo">Correo electrónico <span class="opt">(opcional)</span></label>
+              <div class="input-wrap">
+                <span class="material-icons">mail</span>
+                <input type="email" id="correo" name="correo" autocomplete="email"
+                       placeholder="tu@correo.com" />
+              </div>
+              <div class="err">Ingresa un correo válido o déjalo en blanco.</div>
+            </div>
+
+            <div class="field" data-field="actividad" role="radiogroup" aria-label="Actividad">
+              <label>Actividad</label>
+              <div class="radio-group">
+                <label class="radio-card">
+                  <input type="radio" name="actividad" value="conductor" required />
+                  <span class="ico"><span class="material-icons">drive_eta</span></span>
+                  <span class="label">Conductor</span>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="actividad" value="propietario" required />
+                  <span class="ico"><span class="material-icons">local_taxi</span></span>
+                  <span class="label">Propietario</span>
+                </label>
+              </div>
+              <div class="err">Selecciona tu actividad.</div>
+            </div>
+
+            <!-- TODO_CLIENTE: validar con área legal de Clave 2000 si es viable consolidar los
+                 dos checkboxes legales originales en uno solo. Si no es viable, devolver el
+                 checkbox de tratamiento de datos por separado. -->
+            <label class="check">
+              <input type="checkbox" id="acepto" name="acepto" required />
+              <span>
+                Acepto la <a href="https://www.clave2000.com.co/politicas-de-privacidad/" target="_blank" rel="noopener">política de privacidad</a>
+                y autorizo el contacto.
+              </span>
+            </label>
+
+            <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
+              Quiero financiar mi taxi
+              <span class="material-icons">arrow_forward</span>
+            </button>
+          </form>
+
+          <div class="alt-contact">
+            <div class="alt-label">¿Prefieres hablar con alguien?</div>
+            <div class="alt-row">
+              <!-- TODO_CLIENTE: número real de WhatsApp Bogotá -->
+              <!-- GTM: dispatch event 'click_whatsapp_hero' on click -->
+              <a class="btn btn-outline" id="wa-hero"
+                 href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20información%20sobre%20crédito%20para%20mi%20taxi%20en%20Bogotá">
+                <span class="material-icons" style="font-size:18px">chat</span> WhatsApp
+              </a>
+              <!-- TODO_CLIENTE: teléfono real oficina Bogotá -->
+              <!-- GTM: dispatch event 'click_telefono_hero' on click -->
+              <a class="btn btn-outline" id="tel-hero" href="tel:+57XXXXXXXXXX">
+                <span class="material-icons" style="font-size:18px">phone</span> Llamar ahora
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estado de éxito -->
+        <div class="form-success" role="status" aria-live="polite">
+          <div class="ok-ico"><span class="material-icons">check_circle</span></div>
+          <h3>¡Listo! Te contactamos en menos de 24 horas.</h3>
+          <p>Un asesor de Clave 2000 en Bogotá se comunicará contigo al número que registraste.</p>
+          <button type="button" class="btn btn-outline" id="back-btn">Volver al inicio</button>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     BANDA DE CONFIANZA
+     ========================================================= -->
+<section class="trust-band" aria-label="Cifras de confianza">
+  <div class="container">
+    <!-- TODO_CLIENTE: el claim "#1 en financiación de taxis en Colombia" debe ser validado
+         con fuente verificable antes de publicar. Si no se puede sustentar, reemplazar
+         por una variante defendible (ej. "Líderes en financiación de taxis en Colombia"). -->
+    <div class="trust-item">
+      <span class="material-icons">workspace_premium</span>
+      #1 en financiación de taxis en Colombia
+    </div>
+    <div class="trust-item">
+      <span class="material-icons">local_taxi</span>
+      Más de 23.000 taxis financiados
+    </div>
+    <div class="trust-item">
+      <span class="material-icons">schedule</span>
+      Más de 30 años de experiencia
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PRODUCTOS
+     ========================================================= -->
+<section class="section productos" id="productos">
+  <div class="container">
+    <h2>¿Cuál crédito necesitas?</h2>
+
+    <div class="cards">
+
+      <!-- Card 1: Conductores -->
+      <article class="product-card">
+        <div class="product-img">
+          <!-- TODO_CLIENTE: foto real de taxi (solo taxi, sin camión). Placeholder actual usa
+               imagen del sitio actual de Clave 2000. -->
+          <img src="https://www.clave2000.com.co/wp-content/uploads/2025/12/Credito-para-conductores.png"
+               alt="Taxi amarillo en Bogotá — crédito para conductores"
+               loading="lazy" onerror="this.outerHTML='<span class=\'material-icons placeholder-ico\'>local_taxi</span>'" />
+        </div>
+        <div class="product-body">
+          <div class="eyebrow">Para conductores</div>
+          <h3>Quiero tener mi propio taxi</h3>
+          <p>Financiamos tu primer taxi aunque no tengas historial crediticio.</p>
+          <ul class="benefit-list">
+            <li><span class="material-icons">check_circle</span> Hasta el 80% + cupo</li>
+            <li><span class="material-icons">check_circle</span> Sin codeudor</li>
+            <li><span class="material-icons">check_circle</span> Hasta 84 meses</li>
+          </ul>
+          <!-- GTM: dispatch event 'click_cta_producto_conductor' on click -->
+          <a class="btn btn-primary" href="#form-card" data-scroll-to-form>
+            Quiero mi taxi
+            <span class="material-icons">arrow_forward</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 2: Propietarios -->
+      <article class="product-card">
+        <div class="product-img">
+          <!-- TODO_CLIENTE: foto real de taxi (otro ángulo). Placeholder actual usa imagen del sitio actual. -->
+          <img src="https://www.clave2000.com.co/wp-content/uploads/2026/01/Credito-para-propietarios-2.png"
+               alt="Taxi amarillo — crédito para propietarios"
+               loading="lazy" onerror="this.outerHTML='<span class=\'material-icons placeholder-ico\'>local_taxi</span>'" />
+        </div>
+        <div class="product-body">
+          <div class="eyebrow">Para propietarios</div>
+          <h3>Quiero crecer con mi taxi</h3>
+          <p>Renueva tu vehículo, obtén liquidez o compra un taxi adicional.</p>
+          <ul class="benefit-list">
+            <!-- TODO_CLIENTE: claim "Hasta el 100% + cupo" debe ser validado con el área de
+                 producto/crédito. Si en la llamada de seguimiento no se cumple literalmente,
+                 destruye conversión real. Sustituir por la cifra defendible. -->
+            <li><span class="material-icons">check_circle</span> Hasta el 100% + cupo</li>
+            <li><span class="material-icons">check_circle</span> Sin codeudor</li>
+            <li><span class="material-icons">check_circle</span> Hasta 84 meses</li>
+          </ul>
+          <!-- GTM: dispatch event 'click_cta_producto_propietario' on click -->
+          <a class="btn btn-primary" href="#form-card" data-scroll-to-form>
+            Quiero crecer
+            <span class="material-icons">arrow_forward</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     TESTIMONIOS
+     ========================================================= -->
+<section class="section testimonios" aria-label="Testimonios de clientes">
+  <div class="container">
+    <h2>Lo que dicen nuestros clientes</h2>
+
+    <!-- TODO_CLIENTE: priorizar testimonios reales de Bogotá. Los actuales son los testimonios
+         únicos disponibles en el sitio público, deduplicados. -->
+    <div class="testi-grid">
+
+      <article class="testi-card">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="quote">Estoy muy agradecido con Clave 2000 por ayudarme a obtener mi propio vehículo.</p>
+        <div class="testi-author">
+          <div class="avatar" aria-hidden="true">CB</div>
+          <div>
+            <div class="testi-name">César Bayona</div>
+            <div class="testi-meta">Conductor → Propietario</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testi-card">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="quote">Con Clave 2000 me convertí en dueño de mi propio taxi después de 20 años.</p>
+        <div class="testi-author">
+          <div class="avatar" aria-hidden="true">AV</div>
+          <div>
+            <div class="testi-name">Angel Valencia</div>
+            <div class="testi-meta">Propietario de taxi</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testi-card">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="quote">Con Clave 2000 he podido darle estudio a mis hijos gracias a los ingresos del taxi.</p>
+        <div class="testi-author">
+          <div class="avatar" aria-hidden="true">HO</div>
+          <div>
+            <div class="testi-name">Henry Ocampo</div>
+            <div class="testi-meta">Conductor</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testi-card">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="quote">Con Clave 2000 ahora soy mi propio jefe y he podido viajar con mi familia.</p>
+        <div class="testi-author">
+          <div class="avatar" aria-hidden="true">JA</div>
+          <div>
+            <div class="testi-name">Jorge Altamirano</div>
+            <div class="testi-meta">Propietario de taxi</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     OFICINA BOGOTÁ
+     ========================================================= -->
+<section class="section oficina" aria-label="Oficina Bogotá">
+  <div class="container">
+    <div class="oficina-grid">
+
+      <div class="map-wrap">
+        <!-- TODO_CLIENTE: reemplazar el src del iframe por las coordenadas exactas de la oficina Bogotá.
+             Mientras tanto, mapa de Bogotá centro como placeholder. -->
+        <iframe
+          title="Ubicación oficina Clave 2000 Bogotá"
+          src="https://www.google.com/maps?q=Bogot%C3%A1%2C+Colombia&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="oficina-info">
+        <h2>Visítanos en Bogotá</h2>
+
+        <ul class="info-list">
+          <li>
+            <span class="material-icons">location_on</span>
+            <div>
+              <strong>Dirección</strong>
+              <!-- TODO_CLIENTE: dirección exacta de la oficina Bogotá -->
+              <span>[Dirección oficina Bogotá]</span>
+            </div>
+          </li>
+          <li>
+            <span class="material-icons">phone</span>
+            <div>
+              <strong>Teléfono</strong>
+              <!-- TODO_CLIENTE: teléfono real oficina Bogotá -->
+              <span>[Teléfono Bogotá]</span>
+            </div>
+          </li>
+          <li>
+            <span class="material-icons">schedule</span>
+            <div>
+              <strong>Horario</strong>
+              <span>Lunes a viernes 8:00 a.m. – 6:00 p.m.<br/>Sábados 9:00 a.m. – 1:00 p.m.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="oficina-cta">
+          <!-- TODO_CLIENTE: número real de WhatsApp Bogotá -->
+          <a class="btn btn-whatsapp"
+             href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20visitar%20la%20oficina%20de%20Bogotá">
+            <span class="material-icons">chat</span> WhatsApp
+          </a>
+          <!-- TODO_CLIENTE: link real de directions a la oficina Bogotá -->
+          <a class="btn btn-outline" href="https://www.google.com/maps/dir/?api=1&destination=Bogot%C3%A1" target="_blank" rel="noopener">
+            <span class="material-icons">directions</span> Cómo llegar
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="https://www.clave2000.com.co/wp-content/uploads/2026/03/LOGO-C2K-02.svg" alt="Clave 2000" />
+        </div>
+        <p style="color:rgba(255,255,255,0.7);font-size:13px;max-width:280px;margin:0">
+          Más de 30 años financiando taxis y vehículos productivos en Colombia.
+        </p>
+      </div>
+
+      <div>
+        <h4>Créditos</h4>
+        <ul>
+          <li><a href="#productos">Crédito para conductores</a></li>
+          <li><a href="#productos">Crédito para propietarios</a></li>
+          <li><a href="https://www.clave2000.com.co/creditos/">Ver todos los créditos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="https://www.clave2000.com.co/nosotros/">Nosotros</a></li>
+          <li><a href="https://www.clave2000.com.co/blog/">Blog</a></li>
+          <li><a href="https://www.clave2000.com.co/politicas-de-privacidad/">Política de privacidad</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contáctanos</h4>
+        <ul>
+          <li><strong style="color:#fff">Bogotá</strong></li>
+          <li>Cali · Sede principal</li>
+          <li>Medellín</li>
+          <li>Cartagena</li>
+          <li>Barranquilla</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="yr"></span> Clave 2000. Todos los derechos reservados.</span>
+      <span>Vigilada Superintendencia Financiera de Colombia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FAB de WhatsApp mobile -->
+<!-- TODO_CLIENTE: número real de WhatsApp Bogotá -->
+<!-- GTM: dispatch event 'click_whatsapp_fab' on click -->
+<a class="fab-wa"
+   href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20información%20sobre%20crédito%20para%20mi%20taxi%20en%20Bogotá"
+   aria-label="Contactar por WhatsApp">
+  <span class="material-icons">chat</span>
+</a>
+
+<script>
+(function(){
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Scroll suave a formulario desde CTAs de productos
+  document.querySelectorAll('[data-scroll-to-form]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById('form-card');
+      if(target){
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+        var firstInput = target.querySelector('input,select');
+        if(firstInput) setTimeout(function(){firstInput.focus();}, 600);
+      }
+    });
+  });
+
+  // Validación + envío del formulario
+  var form = document.getElementById('lead-form');
+  var submitBtn = document.getElementById('submit-btn');
+  var formCard = document.getElementById('form-card');
+  var backBtn = document.getElementById('back-btn');
+
+  function setError(name, hasErr){
+    var f = form.querySelector('[data-field="' + name + '"]');
+    if(!f) return;
+    f.classList.toggle('has-error', !!hasErr);
+  }
+
+  function validate(){
+    var ok = true;
+
+    var nombre = form.nombre.value.trim();
+    if(nombre.length < 3){ setError('nombre', true); ok = false; } else setError('nombre', false);
+
+    var celular = form.celular.value.replace(/\D/g,'');
+    form.celular.value = celular;
+    if(celular.length !== 10){ setError('celular', true); ok = false; } else setError('celular', false);
+
+    var correo = form.correo.value.trim();
+    if(correo.length > 0){
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+      if(!emailOk){ setError('correo', true); ok = false; } else setError('correo', false);
+    } else setError('correo', false);
+
+    var actividadEl = form.querySelector('input[name="actividad"]:checked');
+    var actividad = actividadEl ? actividadEl.value : '';
+    if(!actividad){ setError('actividad', true); ok = false; } else setError('actividad', false);
+
+    if(!form.acepto.checked){ ok = false; form.acepto.focus(); }
+
+    return ok;
+  }
+
+  // Validación en vivo: limpia errores cuando el usuario corrige
+  ['nombre','celular','correo'].forEach(function(name){
+    var el = form[name];
+    if(!el) return;
+    el.addEventListener('input', function(){ setError(name, false); });
+    el.addEventListener('change', function(){ setError(name, false); });
+  });
+  form.querySelectorAll('input[name="actividad"]').forEach(function(r){
+    r.addEventListener('change', function(){ setError('actividad', false); });
+  });
+
+  // Solo dígitos en celular
+  form.celular.addEventListener('input', function(){
+    this.value = this.value.replace(/\D/g,'').slice(0,10);
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validate()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Enviando…';
+
+    // TODO_CLIENTE: aquí debe conectarse el endpoint real del CRM de Clave 2000.
+    // Por ahora simulamos el envío para que la gerente pueda ver el estado de éxito.
+    setTimeout(function(){
+      // GTM: dispatch event 'envio_formulario_hero_bogota' on submit success
+      if(window.dataLayer){
+        var sel = form.querySelector('input[name="actividad"]:checked');
+        window.dataLayer.push({
+          event:'envio_formulario_hero_bogota',
+          actividad: sel ? sel.value : '',
+          ciudad:'bogota'
+        });
+      }
+      formCard.classList.add('is-sent');
+      formCard.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 600);
+  });
+
+  backBtn.addEventListener('click', function(){
+    formCard.classList.remove('is-sent');
+    form.reset();
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Quiero financiar mi taxi <span class="material-icons">arrow_forward</span>';
+  });
+})();
+</script>
+
+</body>
+</html>
