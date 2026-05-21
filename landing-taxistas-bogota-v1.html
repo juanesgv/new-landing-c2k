@@ -369,22 +369,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .check input{margin-top:2px;accent-color:var(--c-red);width:16px;height:16px}
 .check a{color:var(--c-navy);text-decoration:underline}
 
-.alt-contact{
-  margin-top:16px;
-  text-align:center;
-}
-.alt-contact .alt-label{
-  font-size:12px;
-  color:var(--c-text-muted);
-  margin-bottom:10px;
-}
-.alt-contact .alt-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-.alt-contact .btn{height:42px;font-size:14px;padding:0 12px}
-
 /* Radio cards (Actividad) */
 .radio-group{
   display:grid;
@@ -731,21 +715,55 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .footer-bottom a{color:rgba(255,255,255,0.4)}
 .footer-bottom a:hover{color:rgba(255,255,255,0.75)}
 
-/* Sticky WhatsApp mobile */
-.fab-wa{
+/* WhatsApp floating button (desktop + mobile) */
+.wa-float{
   position:fixed;
-  right:16px;
-  bottom:16px;
-  width:56px;height:56px;
+  right:24px;
+  bottom:24px;
+  width:60px;height:60px;
   border-radius:50%;
-  background:var(--c-whatsapp);
+  background:#25D366;
   color:#fff;
-  display:none;
+  display:flex;
   align-items:center;justify-content:center;
-  box-shadow:0 10px 24px rgba(0,166,62,0.35);
-  z-index:60;
+  box-shadow:0 6px 24px rgba(37,211,102,0.40);
+  z-index:75;
+  transition:transform .2s ease;
 }
-.fab-wa .material-icons{font-size:30px}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float .material-icons{font-size:30px}
+
+/* Sticky mobile CTA — vuelve al formulario al hacer scroll */
+.sticky-cta{
+  position:fixed;
+  left:0;right:0;bottom:0;
+  background:#fff;
+  padding:10px 14px;
+  box-shadow:0 -4px 16px rgba(0,0,0,0.15);
+  border-top:1px solid var(--c-border);
+  z-index:80;
+  display:none;
+  transform:translateY(110%);
+  transition:transform .25s ease;
+}
+.sticky-cta.is-visible{transform:translateY(0)}
+.sticky-cta button{
+  width:100%;
+  height:48px;
+  border-radius:var(--r-button);
+  background:var(--c-red);
+  color:#fff;
+  font-weight:700;
+  font-size:15px;
+  font-family:var(--font-display);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  box-shadow:0 4px 14px rgba(198,48,37,0.30);
+}
+.sticky-cta button:active{background:var(--c-red-dark)}
+.sticky-cta .material-icons{font-size:18px}
 
 /* =========================================================
    BREAKPOINTS
@@ -762,7 +780,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .cards{grid-template-columns:1fr 1fr}
   .testi-grid{grid-template-columns:1fr 1fr}
   .oficina-grid{grid-template-columns:1.05fr 1fr;gap:40px}
-  .alt-contact .alt-row{grid-template-columns:1fr 1fr}
 }
 
 @media (min-width:1024px){
@@ -782,7 +799,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .trustbar{height:52px}
   .trustbar-mid{display:none}
   .trustbar-cta{padding:6px 12px;font-size:12px}
-  .fab-wa{display:inline-flex}
+  .sticky-cta{display:block}
+  .wa-float{bottom:84px;right:14px;width:52px;height:52px}
+  .wa-float .material-icons{font-size:26px}
+  body{padding-bottom:72px}
   .hero-inner{padding:36px 0 40px;min-height:360px}
   .hero h1{font-size:30px}
   .form-card{padding:22px;margin:0}
@@ -935,23 +955,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               <span class="material-icons">arrow_forward</span>
             </button>
           </form>
-
-          <div class="alt-contact">
-            <div class="alt-label">¿Prefieres hablar con alguien?</div>
-            <div class="alt-row">
-              <!-- TODO_CLIENTE: número real de WhatsApp Bogotá -->
-              <!-- GTM: dispatch event 'click_whatsapp_hero' on click -->
-              <a class="btn btn-outline" id="wa-hero"
-                 href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20información%20sobre%20crédito%20para%20mi%20taxi%20en%20Bogotá">
-                <span class="material-icons" style="font-size:18px">chat</span> WhatsApp
-              </a>
-              <!-- TODO_CLIENTE: teléfono real oficina Bogotá -->
-              <!-- GTM: dispatch event 'click_telefono_hero' on click -->
-              <a class="btn btn-outline" id="tel-hero" href="tel:+57XXXXXXXXXX">
-                <span class="material-icons" style="font-size:18px">phone</span> Llamar ahora
-              </a>
-            </div>
-          </div>
         </div>
 
         <!-- Estado de éxito -->
@@ -1215,31 +1218,67 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 </footer>
 
-<!-- FAB de WhatsApp mobile -->
+<!-- WhatsApp floating button (desktop + mobile, esquina inferior derecha) -->
 <!-- TODO_CLIENTE: número real de WhatsApp Bogotá -->
-<!-- GTM: dispatch event 'click_whatsapp_fab' on click -->
-<a class="fab-wa"
+<!-- GTM: dispatch event 'click_whatsapp_float' on click -->
+<a class="wa-float"
    href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20información%20sobre%20crédito%20para%20mi%20taxi%20en%20Bogotá"
+   target="_blank" rel="noopener"
    aria-label="Contactar por WhatsApp">
   <span class="material-icons">chat</span>
 </a>
+
+<!-- Sticky CTA mobile: aparece al hacer scroll y devuelve al formulario -->
+<!-- GTM: dispatch event 'click_sticky_cta_mobile' on click -->
+<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+  <button type="button" id="sticky-cta-btn">
+    <span class="material-icons">edit</span>
+    Solicitar mi crédito
+  </button>
+</div>
 
 <script>
 (function(){
   document.getElementById('yr').textContent = new Date().getFullYear();
 
+  function scrollToForm(){
+    var target = document.getElementById('form-card');
+    if(!target) return;
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+    var firstInput = target.querySelector('input,select');
+    if(firstInput) setTimeout(function(){firstInput.focus();}, 600);
+  }
+
   // Scroll suave a formulario desde CTAs de productos
   document.querySelectorAll('[data-scroll-to-form]').forEach(function(el){
     el.addEventListener('click', function(e){
       e.preventDefault();
-      var target = document.getElementById('form-card');
-      if(target){
-        target.scrollIntoView({behavior:'smooth', block:'start'});
-        var firstInput = target.querySelector('input,select');
-        if(firstInput) setTimeout(function(){firstInput.focus();}, 600);
-      }
+      scrollToForm();
     });
   });
+
+  // Sticky CTA mobile: aparece cuando el formulario sale de la vista
+  var stickyCta = document.getElementById('sticky-cta');
+  var stickyBtn = document.getElementById('sticky-cta-btn');
+  var formCardEl = document.getElementById('form-card');
+
+  if(stickyCta && stickyBtn && formCardEl && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var visible = entry.isIntersecting && entry.intersectionRatio > 0.1;
+        stickyCta.classList.toggle('is-visible', !visible);
+        stickyCta.setAttribute('aria-hidden', visible ? 'true' : 'false');
+      });
+    }, {threshold:[0, 0.1, 0.5]});
+    io.observe(formCardEl);
+
+    stickyBtn.addEventListener('click', function(){
+      if(window.dataLayer){
+        window.dataLayer.push({event:'click_sticky_cta_mobile', ciudad:'bogota'});
+      }
+      scrollToForm();
+    });
+  }
 
   // Validación + envío del formulario
   var form = document.getElementById('lead-form');
