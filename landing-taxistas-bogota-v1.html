@@ -135,75 +135,53 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 
 /* =========================================================
-   NAVBAR
+   TRUSTBAR (header)
    ========================================================= */
-.navbar{
+.trustbar{
   position:sticky;
   top:0;
-  z-index:50;
-  height:var(--h-navbar);
+  z-index:90;
+  height:56px;
   background:#fff;
   border-bottom:1px solid var(--c-border);
 }
-.navbar .container{
+.trustbar-inner{
+  max-width:var(--container);
+  margin:0 auto;
   height:100%;
+  padding:0 var(--gutter);
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
 }
-.nav-logo img{height:38px;width:auto}
-.nav-links{
+.trustbar-logo{display:flex;align-items:center}
+.trustbar-logo img{height:32px;width:auto;display:block}
+.trustbar-mid{
   display:flex;
-  gap:28px;
-  list-style:none;
-  margin:0;
-  padding:0;
-  font-size:14px;
+  align-items:center;
+  gap:24px;
+  font-size:12px;
+  color:var(--c-text-muted);
   font-weight:500;
-  color:var(--c-navy);
 }
-.nav-links a:hover{color:var(--c-red)}
-.nav-right{display:flex;align-items:center;gap:14px}
-.nav-social{display:flex;gap:10px;color:var(--c-navy)}
-.nav-social a{
-  width:34px;height:34px;
-  display:inline-flex;align-items:center;justify-content:center;
-  border-radius:50%;
-  border:1px solid var(--c-border);
+.trustbar-mid .item{display:flex;align-items:center;gap:6px}
+.trustbar-mid .item .material-icons{font-size:16px;color:var(--c-red)}
+.trustbar-mid .item strong{color:var(--c-navy);font-weight:700}
+.trustbar-cta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--c-bg-soft);
+  color:var(--c-navy);
+  padding:8px 14px;
+  border-radius:var(--r-button);
+  font-size:13px;
+  font-weight:700;
   transition:background .15s ease, color .15s ease;
 }
-.nav-social a:hover{background:var(--c-navy);color:#fff;border-color:var(--c-navy)}
-
-.nav-pay{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:0 18px;
-  height:40px;
-  border-radius:var(--r-button);
-  background:var(--c-red);
-  color:#fff;
-  font-weight:600;
-  font-size:14px;
-}
-.nav-pay:hover{background:var(--c-red-hover)}
-.nav-wa-mobile{
-  display:none;
-  align-items:center;
-  justify-content:center;
-  width:40px;height:40px;
-  background:var(--c-whatsapp);
-  color:#fff;
-  border-radius:50%;
-}
-.nav-burger{
-  display:none;
-  width:40px;height:40px;
-  align-items:center;justify-content:center;
-  border-radius:8px;
-  color:var(--c-navy);
-}
+.trustbar-cta:hover{background:var(--c-navy);color:#fff}
+.trustbar-cta .material-icons{font-size:16px}
 
 /* =========================================================
    HERO
@@ -697,41 +675,61 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .oficina-cta{display:flex;gap:12px;flex-wrap:wrap}
 
 /* =========================================================
-   FOOTER
+   FOOTER (compact)
    ========================================================= */
 .footer{
-  background:#1A2C3B;
-  color:rgba(255,255,255,0.85);
-  padding:48px 0 24px;
+  background:#0F1F2C;
+  padding:40px 0 24px;
   font-size:14px;
 }
-.footer-grid{
-  display:grid;
-  grid-template-columns:1fr;
+.footer-inner{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 var(--gutter);
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
   gap:32px;
-  margin-bottom:32px;
+  flex-wrap:wrap;
 }
-.footer h4{
-  color:#fff;
-  font-size:14px;
-  font-weight:700;
-  margin:0 0 14px;
-  text-transform:uppercase;
-  letter-spacing:0.05em;
-}
-.footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.footer a:hover{color:var(--c-red)}
-.footer-logo img{height:36px;margin-bottom:14px;filter:brightness(0) invert(1)}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,0.12);
-  padding-top:18px;
+.footer-brand .logo{margin-bottom:10px}
+.footer-brand .logo img{height:34px;filter:brightness(0) invert(1)}
+.footer-brand p{
   font-size:12px;
-  color:rgba(255,255,255,0.55);
+  color:rgba(255,255,255,0.45);
+  line-height:1.55;
+  max-width:340px;
+  margin:0;
+}
+.footer-contact{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  font-size:13px;
+}
+.footer-contact a{
+  color:rgba(255,255,255,0.72);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  transition:color .15s ease;
+}
+.footer-contact a:hover{color:#fff}
+.footer-contact a .material-icons{font-size:16px;color:var(--c-red)}
+.footer-bottom{
+  max-width:var(--container);
+  margin:28px auto 0;
+  padding:18px var(--gutter) 0;
+  border-top:1px solid rgba(255,255,255,0.08);
+  font-size:11px;
+  color:rgba(255,255,255,0.4);
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
-  gap:10px;
+  gap:8px;
 }
+.footer-bottom a{color:rgba(255,255,255,0.4)}
+.footer-bottom a:hover{color:rgba(255,255,255,0.75)}
 
 /* Sticky WhatsApp mobile */
 .fab-wa{
@@ -765,7 +763,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .testi-grid{grid-template-columns:1fr 1fr}
   .oficina-grid{grid-template-columns:1.05fr 1fr;gap:40px}
   .alt-contact .alt-row{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr}
 }
 
 @media (min-width:1024px){
@@ -782,9 +779,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 
 @media (max-width:767px){
-  .nav-links,.nav-social,.nav-pay{display:none}
-  .nav-burger{display:inline-flex}
-  .nav-wa-mobile{display:inline-flex}
+  .trustbar{height:52px}
+  .trustbar-mid{display:none}
+  .trustbar-cta{padding:6px 12px;font-size:12px}
   .fab-wa{display:inline-flex}
   .hero-inner{padding:36px 0 40px;min-height:360px}
   .hero h1{font-size:30px}
@@ -801,39 +798,33 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <!-- =========================================================
      NAVBAR
      ========================================================= -->
-<header class="navbar" role="banner">
-  <div class="container">
-    <a class="nav-logo" href="https://www.clave2000.com.co/" aria-label="Ir al inicio de Clave 2000">
+<header class="trustbar" role="banner">
+  <div class="trustbar-inner">
+    <a href="https://www.clave2000.com.co/" class="trustbar-logo" aria-label="Ir al inicio de Clave 2000">
       <img src="https://www.clave2000.com.co/wp-content/uploads/2026/03/LOGO-C2K-02.svg" alt="Clave 2000" />
     </a>
 
-    <nav aria-label="Menú principal">
-      <ul class="nav-links">
-        <li><a href="https://www.clave2000.com.co/nosotros/">Nosotros</a></li>
-        <li><a href="https://www.clave2000.com.co/creditos/">Créditos</a></li>
-        <li><a href="https://www.clave2000.com.co/blog/">Blog</a></li>
-        <li><a href="https://www.clave2000.com.co/contacto/">Contacto</a></li>
-      </ul>
-    </nav>
-
-    <div class="nav-right">
-      <div class="nav-social" aria-label="Redes sociales">
-        <a href="#" aria-label="Facebook"><span class="material-icons" style="font-size:18px">facebook</span></a>
-        <a href="#" aria-label="Instagram"><span class="material-icons" style="font-size:18px">photo_camera</span></a>
+    <div class="trustbar-mid" aria-label="Garantías de confianza">
+      <div class="item">
+        <span class="material-icons">workspace_premium</span>
+        <strong>+30 años</strong>&nbsp;en el mercado
       </div>
-      <a class="nav-pay" href="https://www.clave2000.com.co/paga-aqui/">
-        <span class="material-icons" style="font-size:18px">payments</span> Paga aquí
-      </a>
-      <!-- TODO_CLIENTE: reemplazar el número placeholder por el número real de WhatsApp Bogotá -->
-      <a class="nav-wa-mobile"
-         href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20información%20sobre%20crédito%20para%20mi%20taxi%20en%20Bogotá"
-         aria-label="WhatsApp Clave 2000">
-        <span class="material-icons" style="font-size:22px">chat</span>
-      </a>
-      <button class="nav-burger" aria-label="Abrir menú" type="button">
-        <span class="material-icons">menu</span>
-      </button>
+      <div class="item">
+        <span class="material-icons">local_taxi</span>
+        <strong>+23.000</strong>&nbsp;taxistas financiados
+      </div>
+      <div class="item">
+        <span class="material-icons">verified_user</span>
+        Vigilado por la SuperFinanciera
+      </div>
     </div>
+
+    <!-- TODO_CLIENTE: número real de la línea gratuita Bogotá -->
+    <!-- GTM: dispatch event 'click_telefono_header' on click -->
+    <a href="tel:+57XXXXXXXXXX" class="trustbar-cta">
+      <span class="material-icons">phone_in_talk</span>
+      <span>Llamar gratis</span>
+    </a>
   </div>
 </header>
 
@@ -1197,50 +1188,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
      FOOTER
      ========================================================= -->
 <footer class="footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">
-          <img src="https://www.clave2000.com.co/wp-content/uploads/2026/03/LOGO-C2K-02.svg" alt="Clave 2000" />
-        </div>
-        <p style="color:rgba(255,255,255,0.7);font-size:13px;max-width:280px;margin:0">
-          Más de 30 años financiando taxis y vehículos productivos en Colombia.
-        </p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">
+        <img src="https://www.clave2000.com.co/wp-content/uploads/2026/03/LOGO-C2K-02.svg" alt="Clave 2000" />
       </div>
-
-      <div>
-        <h4>Créditos</h4>
-        <ul>
-          <li><a href="#productos">Crédito para conductores</a></li>
-          <li><a href="#productos">Crédito para propietarios</a></li>
-          <li><a href="https://www.clave2000.com.co/creditos/">Ver todos los créditos</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="https://www.clave2000.com.co/nosotros/">Nosotros</a></li>
-          <li><a href="https://www.clave2000.com.co/blog/">Blog</a></li>
-          <li><a href="https://www.clave2000.com.co/politicas-de-privacidad/">Política de privacidad</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Contáctanos</h4>
-        <ul>
-          <li><strong style="color:#fff">Bogotá</strong></li>
-          <li>Cali · Sede principal</li>
-          <li>Medellín</li>
-          <li>Cartagena</li>
-          <li>Barranquilla</li>
-        </ul>
-      </div>
+      <p>Más de 30 años financiando taxistas en Colombia. Vigilados por la Superintendencia Financiera de Colombia.</p>
     </div>
 
-    <div class="footer-bottom">
-      <span>© <span id="yr"></span> Clave 2000. Todos los derechos reservados.</span>
-      <span>Vigilada Superintendencia Financiera de Colombia</span>
+    <div class="footer-contact">
+      <!-- TODO_CLIENTE: número real de la línea gratuita -->
+      <a href="tel:+57XXXXXXXXXX"><span class="material-icons">phone</span>01-800-XXX-XXXX</a>
+      <!-- TODO_CLIENTE: número real de WhatsApp Bogotá -->
+      <a href="https://wa.me/57XXXXXXXXXX" target="_blank" rel="noopener"><span class="material-icons">chat</span>WhatsApp +57 300 000 0000</a>
+      <!-- TODO_CLIENTE: correo de contacto -->
+      <a href="mailto:credito@clave2000.com.co"><span class="material-icons">mail</span>credito@clave2000.com.co</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>© <span id="yr"></span> Clave 2000 · Todos los derechos reservados</div>
+    <div>
+      <a href="https://www.clave2000.com.co/politicas-de-privacidad/">Política de privacidad</a> ·
+      <a href="https://www.clave2000.com.co/terminos-y-condiciones/">Términos y condiciones</a>
     </div>
   </div>
 </footer>
