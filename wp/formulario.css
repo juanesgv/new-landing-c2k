@@ -1,0 +1,359 @@
+/* =========================================================
+   Clave 2000 — Formulario standalone
+   Aislado con prefijo c2k- y tokens propios para que no
+   herede ni rompa estilos del tema de WordPress / Elementor.
+   ========================================================= */
+
+.c2k-form-wrap{
+  /* Tokens locales — no contaminan el resto de la página */
+  --c2k-navy:#243C4F !important;
+  --c2k-red:#C63025 !important;
+  --c2k-red-hover:#C52B27 !important;
+  --c2k-red-dark:#A82119 !important;
+  --c2k-white:#FFFFFF !important;
+  --c2k-bg-soft:#F6F6F6 !important;
+  --c2k-border:#E7E7E7 !important;
+  --c2k-border-strong:#D1D1D1 !important;
+  --c2k-text:#1B1B1B !important;
+  --c2k-text-muted:#5A6772 !important;
+  --c2k-text-label:#333333 !important;
+  --c2k-success:#00A63E !important;
+
+  --c2k-r-input:8px !important;
+  --c2k-r-button:8px !important;
+  --c2k-r-card:12px !important;
+
+  --c2k-h-input:48px !important;
+  --c2k-h-button:48px !important;
+
+  --c2k-shadow-form:0 20px 48px rgba(0,0,0,0.18) !important;
+  --c2k-shadow-focus:0 0 0 3px rgba(198,48,37,0.25) !important;
+
+  --c2k-font:'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  --c2k-font-label:'Roboto', 'Montserrat', system-ui, sans-serif !important;
+
+  /* Reset puntual del scope: solo afecta a lo que vive dentro */
+  font-family:var(--c2k-font) !important;
+  color:var(--c2k-text) !important;
+  line-height:1.4 !important;
+  box-sizing:border-box !important;
+  -webkit-font-smoothing:antialiased !important;
+  -moz-osx-font-smoothing:grayscale !important;
+  width:100% !important;
+  max-width:480px !important;
+  margin:0 auto !important;
+  display:block !important;
+}
+.c2k-form-wrap *,
+.c2k-form-wrap *::before,
+.c2k-form-wrap *::after{box-sizing:border-box}
+
+/* ----- Card contenedora ----- */
+.c2k-form-card{
+  background:var(--c2k-white) !important;
+  border-radius:var(--c2k-r-card) !important;
+  padding:28px !important;
+  box-shadow:var(--c2k-shadow-form) !important;
+  border:1px solid var(--c2k-border) !important;
+}
+
+/* ----- Encabezado del formulario ----- */
+.c2k-form-head{margin:0 0 18px}
+.c2k-form-title{
+  margin:0 0 4px !important;
+  font-family:var(--c2k-font) !important;
+  font-weight:700 !important;
+  font-size:22px !important;
+  line-height:1.2 !important;
+  color:var(--c2k-navy) !important;
+}
+.c2k-form-sub{
+  margin:0 !important;
+  color:var(--c2k-text-muted) !important;
+  font-size:14px !important;
+  line-height:1.45 !important;
+}
+
+/* ----- Form base ----- */
+.c2k-form{margin:0 !important;padding:0}
+
+/* ----- Field ----- */
+.c2k-field{margin:0 0 14px}
+.c2k-label{
+  display:block !important;
+  font-family:var(--c2k-font-label) !important;
+  font-weight:500 !important;
+  font-size:12px !important;
+  color:var(--c2k-text-label) !important;
+  margin:0 0 6px !important;
+  letter-spacing:0.01em !important;
+}
+.c2k-opt{color:var(--c2k-text-muted) !important;font-weight:400}
+
+.c2k-input-wrap{
+  position:relative !important;
+  display:flex !important;
+  align-items:center !important;
+}
+.c2k-input-ico{
+  position:absolute !important;
+  left:14px !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  color:var(--c2k-navy) !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  pointer-events:none !important;
+  line-height:0 !important;
+}
+.c2k-input{
+  width:100% !important;
+  height:var(--c2k-h-input) !important;
+  border:1px solid var(--c2k-border-strong) !important;
+  border-radius:var(--c2k-r-input) !important;
+  background:var(--c2k-white) !important;
+  padding:0 14px 0 44px !important;
+  font-family:var(--c2k-font) !important;
+  font-size:15px !important;
+  color:var(--c2k-text) !important;
+  transition:border-color .15s ease, box-shadow .15s ease !important;
+  appearance:none !important;
+  -webkit-appearance:none !important;
+  margin:0 !important;
+}
+.c2k-input::placeholder{color:#9aa3ad !important;opacity:1}
+.c2k-input:focus{
+  outline:none !important;
+  border-color:var(--c2k-red) !important;
+  box-shadow:var(--c2k-shadow-focus) !important;
+}
+.c2k-field.is-error .c2k-input{border-color:var(--c2k-red)}
+
+/* ----- Mensajes de error ----- */
+.c2k-err{
+  display:none !important;
+  font-size:12px !important;
+  color:var(--c2k-red) !important;
+  margin-top:6px !important;
+  font-family:var(--c2k-font-label) !important;
+  line-height:1.3 !important;
+}
+.c2k-field.is-error .c2k-err{display:block}
+
+/* ----- Radio cards (Actividad) ----- */
+.c2k-radio-group{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:10px !important;
+}
+.c2k-radio-card{
+  position:relative !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  padding:14px 6px !important;
+  border:1.5px solid var(--c2k-border-strong) !important;
+  border-radius:var(--c2k-r-input) !important;
+  background:var(--c2k-white) !important;
+  cursor:pointer !important;
+  text-align:center !important;
+  transition:border-color .15s ease, background .15s ease, transform .15s ease, box-shadow .15s ease !important;
+  min-height:80px !important;
+}
+.c2k-radio-card:hover{
+  border-color:var(--c2k-navy) !important;
+  transform:translateY(-1px) !important;
+}
+.c2k-radio-input{
+  position:absolute !important;
+  opacity:0 !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  margin:0 !important;
+  cursor:pointer !important;
+}
+.c2k-radio-ico{
+  width:34px !important;height:34px !important;
+  border-radius:50% !important;
+  background:var(--c2k-bg-soft) !important;
+  color:var(--c2k-navy) !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  transition:background .15s ease, color .15s ease !important;
+}
+.c2k-radio-label{
+  font-family:var(--c2k-font) !important;
+  font-weight:600 !important;
+  font-size:14px !important;
+  color:var(--c2k-navy) !important;
+  line-height:1.2 !important;
+}
+.c2k-radio-card:has(.c2k-radio-input:checked){
+  border-color:var(--c2k-red) !important;
+  background:rgba(198,48,37,0.06) !important;
+  box-shadow:0 4px 14px rgba(198,48,37,0.10) !important;
+}
+.c2k-radio-card:has(.c2k-radio-input:checked) .c2k-radio-ico{
+  background:var(--c2k-red) !important;
+  color:var(--c2k-white) !important;
+}
+.c2k-radio-card:has(.c2k-radio-input:checked) .c2k-radio-label{color:var(--c2k-red)}
+.c2k-radio-card:has(.c2k-radio-input:focus-visible){box-shadow:var(--c2k-shadow-focus)}
+/* Fallback para navegadores sin :has() */
+.c2k-radio-card.is-checked{
+  border-color:var(--c2k-red) !important;
+  background:rgba(198,48,37,0.06) !important;
+  box-shadow:0 4px 14px rgba(198,48,37,0.10) !important;
+}
+.c2k-radio-card.is-checked .c2k-radio-ico{
+  background:var(--c2k-red) !important;
+  color:var(--c2k-white) !important;
+}
+.c2k-radio-card.is-checked .c2k-radio-label{color:var(--c2k-red)}
+.c2k-field.is-error .c2k-radio-card{border-color:var(--c2k-red)}
+
+/* ----- Checkbox legal ----- */
+.c2k-check{
+  display:flex !important;
+  align-items:flex-start !important;
+  gap:10px !important;
+  font-size:13px !important;
+  color:var(--c2k-text-muted) !important;
+  margin:6px 0 16px !important;
+  line-height:1.45 !important;
+  cursor:pointer !important;
+}
+.c2k-check-input{
+  margin:2px 0 0 !important;
+  accent-color:var(--c2k-red) !important;
+  width:16px !important;
+  height:16px !important;
+  flex-shrink:0 !important;
+}
+.c2k-check-text a{color:var(--c2k-navy) !important;text-decoration:underline}
+.c2k-check.is-error .c2k-check-text{color:var(--c2k-red)}
+
+/* ----- Botón principal ----- */
+.c2k-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  height:var(--c2k-h-button) !important;
+  padding:0 22px !important;
+  border-radius:var(--c2k-r-button) !important;
+  font-family:var(--c2k-font) !important;
+  font-weight:600 !important;
+  font-size:16px !important;
+  line-height:1 !important;
+  border:0 !important;
+  cursor:pointer !important;
+  transition:background .15s ease, transform .15s ease, box-shadow .15s ease, opacity .15s ease !important;
+  min-height:44px !important;
+  white-space:nowrap !important;
+  text-decoration:none !important;
+}
+.c2k-btn:focus-visible{outline:none !important;box-shadow:var(--c2k-shadow-focus)}
+.c2k-btn-primary{
+  background:var(--c2k-red) !important;
+  color:var(--c2k-white) !important;
+  width:100% !important;
+}
+.c2k-btn-primary:hover{background:var(--c2k-red-hover)}
+.c2k-btn-primary:active{background:var(--c2k-red-dark)}
+.c2k-btn-outline{
+  background:var(--c2k-white) !important;
+  color:var(--c2k-navy) !important;
+  border:1px solid var(--c2k-navy) !important;
+}
+.c2k-btn-outline:hover{background:var(--c2k-navy) !important;color:var(--c2k-white)}
+
+/* Estado disabled / loading del botón */
+.c2k-btn[disabled]{cursor:not-allowed !important;opacity:0.85}
+.c2k-btn-spinner{
+  display:none !important;
+  width:18px !important;
+  height:18px !important;
+  border:2px solid rgba(255,255,255,0.45) !important;
+  border-top-color:var(--c2k-white) !important;
+  border-radius:50% !important;
+  animation:c2k-spin 0.7s linear infinite !important;
+}
+.c2k-btn.is-loading .c2k-btn-arrow{display:none}
+.c2k-btn.is-loading .c2k-btn-spinner{display:inline-block}
+.c2k-btn.is-loading .c2k-btn-label::after{content:'…'}
+.c2k-btn.is-loading .c2k-btn-label{opacity:0.92}
+@keyframes c2k-spin{to{transform:rotate(360deg)}}
+
+/* ----- Trust strip debajo del botón ----- */
+.c2k-trust{
+  list-style:none !important;
+  padding:0 !important;
+  margin:14px 0 0 !important;
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:8px 18px !important;
+  justify-content:center !important;
+}
+.c2k-trust-item{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  font-size:12px !important;
+  color:var(--c2k-text-muted) !important;
+  font-family:var(--c2k-font-label) !important;
+}
+.c2k-trust-item svg{color:var(--c2k-success)}
+
+/* ----- Estado de éxito ----- */
+.c2k-form-success{
+  text-align:center !important;
+  padding:24px 8px !important;
+}
+.c2k-ok-ico{
+  width:64px !important;
+  height:64px !important;
+  border-radius:50% !important;
+  background:rgba(0,166,62,0.12) !important;
+  color:var(--c2k-success) !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin:0 0 16px !important;
+}
+.c2k-ok-title{
+  margin:0 0 8px !important;
+  color:var(--c2k-navy) !important;
+  font-weight:700 !important;
+  font-size:18px !important;
+  line-height:1.3 !important;
+  font-family:var(--c2k-font) !important;
+}
+.c2k-ok-text{
+  color:var(--c2k-text-muted) !important;
+  font-size:14px !important;
+  margin:0 0 18px !important;
+  line-height:1.45 !important;
+}
+
+/* ----- Mobile-first refinements ----- */
+@media (max-width:480px){
+  .c2k-form-card{padding:20px !important;border-radius:10px}
+  .c2k-form-title{font-size:20px}
+  .c2k-radio-card{min-height:74px !important;padding:12px 6px}
+  .c2k-radio-ico{width:30px !important;height:30px}
+  .c2k-trust{gap:6px 12px}
+}
+
+/* ----- Respeta usuarios con motion reducido ----- */
+@media (prefers-reduced-motion: reduce){
+  .c2k-radio-card,
+  .c2k-input,
+  .c2k-btn{transition:none}
+  .c2k-btn-spinner{animation:none}
+}

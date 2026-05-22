@@ -1,0 +1,135 @@
+<!-- =========================================================
+     Clave 2000 — Formulario de solicitud (standalone)
+     Pensado para ser insertado por shortcode en WordPress.
+     - No usa IDs (evita colisiones si el shortcode aparece dos veces).
+     - Todas las clases llevan prefijo c2k- para no chocar con
+       WordPress / Elementor / otros plugins.
+     - El JS se vincula por data-c2k-form y data-c2k-field.
+     ========================================================= -->
+<section class="c2k-form-wrap" aria-label="Formulario de solicitud de crédito Clave 2000">
+  <div class="c2k-form-card" data-c2k-form-card>
+
+    <div class="c2k-form-body" data-c2k-form-body>
+      <header class="c2k-form-head">
+        <h2 class="c2k-form-title">Solicita tu crédito ahora</h2>
+        <p class="c2k-form-sub">Te contactamos en menos de 72 horas.</p>
+      </header>
+
+      <form class="c2k-form" data-c2k-form novalidate>
+
+        <div class="c2k-field" data-c2k-field="nombre">
+          <label class="c2k-label" for="c2k-nombre">Nombre completo</label>
+          <div class="c2k-input-wrap">
+            <span class="c2k-input-ico" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4 0-9 2-9 6v2h18v-2c0-4-5-6-9-6Z"/></svg>
+            </span>
+            <input
+              class="c2k-input"
+              type="text"
+              id="c2k-nombre"
+              name="nombre"
+              autocomplete="name"
+              required
+              minlength="3"
+              placeholder="Ej. Juan Pérez"
+              aria-describedby="c2k-err-nombre" />
+          </div>
+          <div class="c2k-err" id="c2k-err-nombre" role="alert">Por favor escribe tu nombre completo.</div>
+        </div>
+
+        <div class="c2k-field" data-c2k-field="celular">
+          <label class="c2k-label" for="c2k-celular">Celular</label>
+          <div class="c2k-input-wrap">
+            <span class="c2k-input-ico" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.25 1Z"/></svg>
+            </span>
+            <input
+              class="c2k-input"
+              type="tel"
+              id="c2k-celular"
+              name="celular"
+              autocomplete="tel-national"
+              required
+              inputmode="numeric"
+              maxlength="10"
+              placeholder="3001234567"
+              aria-describedby="c2k-err-celular" />
+          </div>
+          <div class="c2k-err" id="c2k-err-celular" role="alert">Ingresa un celular válido de 10 dígitos.</div>
+        </div>
+
+        <div class="c2k-field" data-c2k-field="correo">
+          <label class="c2k-label" for="c2k-correo">
+            Correo electrónico <span class="c2k-opt">(opcional)</span>
+          </label>
+          <div class="c2k-input-wrap">
+            <span class="c2k-input-ico" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5Z"/></svg>
+            </span>
+            <input
+              class="c2k-input"
+              type="email"
+              id="c2k-correo"
+              name="correo"
+              autocomplete="email"
+              placeholder="tu@correo.com"
+              aria-describedby="c2k-err-correo" />
+          </div>
+          <div class="c2k-err" id="c2k-err-correo" role="alert">Ingresa un correo válido o déjalo en blanco.</div>
+        </div>
+
+        <div class="c2k-field" data-c2k-field="actividad" role="radiogroup" aria-label="Actividad">
+          <span class="c2k-label">Actividad</span>
+          <div class="c2k-radio-group">
+
+            <label class="c2k-radio-card">
+              <input class="c2k-radio-input" type="radio" name="actividad" value="conductor" required />
+              <span class="c2k-radio-ico" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M18.9 6.01A2 2 0 0 0 17 4.5H7a2 2 0 0 0-1.9 1.51L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8ZM7 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm10 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM5 11l1.5-4.5h11L19 11Z"/></svg>
+              </span>
+              <span class="c2k-radio-label">Conductor</span>
+            </label>
+
+            <label class="c2k-radio-card">
+              <input class="c2k-radio-input" type="radio" name="actividad" value="propietario" required />
+              <span class="c2k-radio-ico" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M18.9 6.01A2 2 0 0 0 17 4.5h-3V3h-4v1.5H7a2 2 0 0 0-1.9 1.51L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8ZM7 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm10 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM5 11l1.5-4.5h11L19 11Z"/></svg>
+              </span>
+              <span class="c2k-radio-label">Propietario</span>
+            </label>
+
+          </div>
+          <div class="c2k-err" role="alert">Selecciona tu actividad.</div>
+        </div>
+
+        <label class="c2k-check" data-c2k-field="acepto">
+          <input class="c2k-check-input" type="checkbox" name="acepto" required />
+          <span class="c2k-check-text">
+            Acepto la
+            <a href="https://www.clave2000.com.co/politicas-de-privacidad/" target="_blank" rel="noopener">política de privacidad</a>
+            y autorizo el contacto.
+          </span>
+        </label>
+
+        <button class="c2k-btn c2k-btn-primary" type="submit" data-c2k-submit>
+          <span class="c2k-btn-label">Quiero financiar mi taxi</span>
+          <span class="c2k-btn-spinner" aria-hidden="true"></span>
+          <span class="c2k-btn-arrow" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </span>
+        </button>
+
+      </form>
+    </div>
+
+    <div class="c2k-form-success" role="status" aria-live="polite" data-c2k-success hidden>
+      <div class="c2k-ok-ico" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm-1 14.5-4.5-4.5L8 10.5l3 3 6-6L18.5 9Z"/></svg>
+      </div>
+      <h3 class="c2k-ok-title">¡Listo! Te contactamos en menos de 24 horas.</h3>
+      <p class="c2k-ok-text">Un asesor de Clave 2000 en Bogotá se comunicará contigo al número que registraste.</p>
+      <button class="c2k-btn c2k-btn-outline" type="button" data-c2k-reset>Enviar otra solicitud</button>
+    </div>
+
+  </div>
+</section>
