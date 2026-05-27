@@ -248,26 +248,52 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   margin:0 0 22px;
   max-width:560px;
 }
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:18px;
+/* Hero benefits — bloques icon-led (reemplazan los chips/métricas anteriores) */
+.hero-benefits{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  margin:24px 0 22px;
+  max-width:620px;
 }
-.chip{
+.benefit{
+  display:flex;
+  flex-direction:row;
+  align-items:flex-start;
+  gap:14px;
+  min-width:0;
+}
+.benefit-icon{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  background:rgba(198,48,37,0.18);
+  border:1px solid rgba(198,48,37,0.40);
+  color:#FF8A80;
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  background:rgba(255,255,255,0.12);
-  border:1px solid rgba(255,255,255,0.22);
-  color:#fff;
-  font-weight:500;
-  font-size:14px;
-  padding:8px 14px;
-  border-radius:var(--r-pill);
-  backdrop-filter:blur(2px);
+  justify-content:center;
+  flex-shrink:0;
 }
-.chip .material-icons{color:#fff;background:var(--c-red);border-radius:50%;font-size:16px;padding:2px}
+.benefit-icon .material-icons{font-size:24px;line-height:1}
+.benefit-text{flex:1;min-width:0}
+.benefit-title{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:15px;
+  color:#fff;
+  line-height:1.2;
+  letter-spacing:-0.01em;
+  margin:2px 0 4px;
+}
+.benefit-desc{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:13px;
+  color:rgba(255,255,255,0.74);
+  line-height:1.4;
+  margin:0;
+}
 .trust-line{
   font-size:13px;
   color:rgba(255,255,255,0.78);
@@ -771,6 +797,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 @media (min-width:768px){
   .hero h1{font-size:42px}
   .hero .sub{font-size:18px}
+  .hero-benefits{
+    grid-template-columns:1fr 1fr 1fr;
+    gap:20px;
+    margin:30px 0 26px;
+  }
+  .benefit{flex-direction:column;align-items:flex-start;gap:12px}
+  .benefit-icon{width:52px;height:52px;border-radius:14px}
+  .benefit-icon .material-icons{font-size:28px}
+  .benefit-title{font-size:16px;margin:0 0 4px}
+  .benefit-desc{font-size:13px}
   .trust-band .container{
     grid-template-columns:1fr 1fr 1fr;
     gap:24px;
@@ -791,6 +827,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   }
   .hero h1{font-size:48px;max-width:560px}
   .hero .sub{font-size:18px}
+  .hero-benefits{gap:24px;max-width:640px}
+  .benefit-title{font-size:17px}
   .testi-grid{grid-template-columns:repeat(4,1fr)}
   .section{padding:88px 0}
 }
@@ -865,16 +903,34 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         <h1>Financia tu taxi en Bogotá</h1>
         <p class="sub">Aunque no tengas historial crediticio. Valoramos tu experiencia como conductor.</p>
 
-        <div class="chips" role="list">
-          <span class="chip" role="listitem">
-            <span class="material-icons">check</span> Sin codeudor
-          </span>
-          <span class="chip" role="listitem">
-            <span class="material-icons">check</span> Hasta 84 meses
-          </span>
-          <span class="chip" role="listitem">
-            <span class="material-icons">check</span> Respuesta en menos de 72 horas
-          </span>
+        <div class="hero-benefits" role="list" aria-label="Beneficios principales">
+          <div class="benefit" role="listitem">
+            <span class="benefit-icon" aria-hidden="true">
+              <span class="material-icons">handshake</span>
+            </span>
+            <div class="benefit-text">
+              <p class="benefit-title">Sin codeudor</p>
+              <p class="benefit-desc">Aprobamos por tu trayectoria al volante, no por tu historial.</p>
+            </div>
+          </div>
+          <div class="benefit" role="listitem">
+            <span class="benefit-icon" aria-hidden="true">
+              <span class="material-icons">event_available</span>
+            </span>
+            <div class="benefit-text">
+              <p class="benefit-title">Hasta 84 meses</p>
+              <p class="benefit-desc">Cuotas extendidas que se ajustan a tu producido diario.</p>
+            </div>
+          </div>
+          <div class="benefit" role="listitem">
+            <span class="benefit-icon" aria-hidden="true">
+              <span class="material-icons">bolt</span>
+            </span>
+            <div class="benefit-text">
+              <p class="benefit-title">Respuesta en 72 horas</p>
+              <p class="benefit-desc">Sin filas ni papeleo eterno. Una llamada y empezamos.</p>
+            </div>
+          </div>
         </div>
 
         <div class="trust-line">
